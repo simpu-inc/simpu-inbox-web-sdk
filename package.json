@@ -1,24 +1,12 @@
 {
-  "name": "simpu-socials",
-  "version": "0.1.0",
+  "name": "simpu-list-ui-sdk-root",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.13"
+    "build": "pnpm run -r build",
+    "dev": "pnpm run --parallel -r dev",
+    "clean": "rm -rf node_modules **/node_modules **/**/node_modules"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.13"
+    "typescript": "^5.5.4"
   }
 }
