@@ -1,7 +1,7 @@
 import { Thread, UserProfile, UserTying } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
 import PrivateChannel from "pusher-js/types/src/core/channels/private_channel";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { pusher } from "./pusher";
 import { QueryKeys } from "./queries";
 
@@ -157,4 +157,39 @@ export const useInboxWebsocket = (options: {
     subscribeToProfileChannel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile_id, pusher]);
+};
+
+export const useScrollToBottom = () => {
+  const infiniteScrollDiv = useRef<HTMLDivElement>(null);
+
+  const [showScrollToBottomButton, setShowScrollToBottomButton] =
+    useState(false);
+
+  const handleScroll = () => {
+    if (infiniteScrollDiv.current) {
+      if (infiniteScrollDiv.current.scrollTop >= 0) {
+        setShowScrollToBottomButton(false);
+      } else {
+        setShowScrollToBottomButton(true);
+      }
+    }
+  };
+
+  const handleScrollToBottom = () => {
+    if (infiniteScrollDiv.current) {
+      infiniteScrollDiv.current.scrollTop = 1;
+    }
+  };
+
+  useEffect(() => {
+    if (infiniteScrollDiv.current) {
+      infiniteScrollDiv.current.onscroll = handleScroll;
+    }
+  }, []);
+
+  return {
+    showScrollToBottomButton,
+    divRef: infiniteScrollDiv,
+    handleScrollToBottom,
+  };
 };

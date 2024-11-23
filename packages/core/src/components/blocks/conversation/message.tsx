@@ -99,11 +99,11 @@ export const ChatMessage = ({
   const isUser = !!by_account;
   const hasAttachment = !!attachments && !!attachments.length;
 
-  const bgColor = isUser ? "bg.inverted" : "bg";
+  const bgColor = isUser ? "colorPalette.500" : "bg";
   const alignSelf = isUser ? "flex-end" : "flex-start";
   const textColor = useColorModeValue(
-    isUser ? "white" : "gray.800",
-    isUser ? "gray.800" : "white"
+    isUser ? "fg.inverted" : "fg",
+    isUser ? "fg" : "white"
   );
 
   const handleMenuItemSelect = ({ value }: { value: string }) => {
@@ -129,7 +129,7 @@ export const ChatMessage = ({
           py={2}
           gap={1}
           shadow="xs"
-          bg={bgColor}
+          bgColor={bgColor}
           borderRadius="lg"
           color={textColor}
           position="relative"
@@ -221,7 +221,11 @@ export const ChatMessage = ({
               alignItems="center"
               fontSize="xx-small"
             >
-              <Text color="fg.muted" display="inline-block" verticalAlign="top">
+              <Text
+                color={textColor}
+                display="inline-block"
+                verticalAlign="top"
+              >
                 {dayjs(new Date(created_datetime)).format("hh:mm")}
               </Text>
             </Flex>

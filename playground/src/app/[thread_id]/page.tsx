@@ -13,7 +13,7 @@ export default function Thread() {
       </ViewContent>
       <MainContent>
         <HStack gap={0} w="full" h="full" alignItems="flex-start">
-          <VStack gap={0} flex={1} h="full">
+          <VStack gap={0} flex={1} h="full" position="relative">
             <ThreadView />
           </VStack>
           <Suspense>

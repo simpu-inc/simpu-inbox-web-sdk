@@ -14,6 +14,7 @@ import React, {
   useState,
 } from "react";
 import { SocketProvider } from "./socket-provider";
+import { Box, BoxProps } from "@chakra-ui/react";
 
 const SimpuContext = createContext<SimpuContextType | null>(null);
 
@@ -32,6 +33,7 @@ export interface SimpuProviderProps extends PropsWithChildren {
   options?: {
     apiUrl?: string;
   };
+  colorPalette?: BoxProps["colorPalette"];
 }
 
 export const useSimpuProvider = () => {
@@ -49,6 +51,7 @@ export const SimpuProvider: React.FC<SimpuProviderProps> = (props) => {
     children,
     accessToken,
     organisationID,
+    colorPalette = "gray",
     options: { apiUrl } = {},
   } = props;
 
@@ -95,7 +98,9 @@ export const SimpuProvider: React.FC<SimpuProviderProps> = (props) => {
         }}
       >
         <SocketProvider>
-          <Provider>{children}</Provider>
+          <Provider>
+            <Box colorPalette={colorPalette}>{children}</Box>
+          </Provider>
         </SocketProvider>
       </SimpuContext.Provider>
     </QueryClientProvider>
