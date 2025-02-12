@@ -30,7 +30,7 @@ export const ConnectedAccount = (props: { account?: SimpuAccountType }) => {
           />
         </Box>
         <Text textStyle="sm" fontWeight="medium">
-          {account?.name}
+          {account?.name ?? account?.user.name}
         </Text>
       </HStack>
       <HStack align="center">

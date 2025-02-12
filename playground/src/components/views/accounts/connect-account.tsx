@@ -3,7 +3,7 @@
 import { PlatformAccount as Account } from "@simpu/inbox-sdk";
 import { Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import { BsInstagram, BsMessenger } from "react-icons/bs";
+import { BsInstagram, BsMessenger, BsWhatsapp } from "react-icons/bs";
 
 export const ConnectAccount = () => {
   const referer = window.location.href;
@@ -13,6 +13,14 @@ export const ConnectAccount = () => {
       <Text textStyle="sm" fontWeight="medium">
         Connect your Instagram & Messenger accounts
       </Text>
+      <Account.Connect
+        size="sm"
+        platform="whatsapp-web-md"
+        onError={console.log}
+      >
+        <BsWhatsapp />
+        Connect WhatsApp
+      </Account.Connect>
       <Account.Connect
         size="sm"
         platform="instagram"
