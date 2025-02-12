@@ -38,6 +38,9 @@ export const Disconnect = ({
         setIsDisconnectingAccount(true);
         await apiClient.inbox.accounts.disconnectAccount(account?.uuid);
         await queryClient.invalidateQueries({
+          queryKey: [QueryKeys.getInboxAccounts],
+        });
+        await queryClient.invalidateQueries({
           queryKey: [QueryKeys.getInbox, inbox?.uuid],
         });
         setIsDisconnectingAccount(false);
