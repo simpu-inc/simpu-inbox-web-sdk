@@ -98,6 +98,7 @@ export const ProfileForm = (props: ProfileFormProps) => {
             invalid={!!touched.email && !!errors.email}
           >
             <Input
+              readOnly
               size="sm"
               type="email"
               name="email"
