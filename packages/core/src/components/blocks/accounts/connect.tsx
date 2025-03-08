@@ -11,13 +11,14 @@ export const Connect = ({
   platform,
   connectSuccessUrl,
   connectFailureUrl,
+  inboxType = "personal",
   onError,
   onSuccess,
   ...props
 }: AccounButtonProps) => {
   const { apiClient } = useSimpuProvider();
   const { inbox, channels, handleCreateInbox, getOauth2IntegrationUrl } =
-    useAccountConnectOptions();
+    useAccountConnectOptions({ inboxType });
 
   const [sessionId, setSessionId] = useState<string | undefined>();
   const [isQRCodeModalOpen, setIsQRCodeModalOpen] = useState(false);

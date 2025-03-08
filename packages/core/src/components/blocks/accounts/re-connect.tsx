@@ -12,11 +12,12 @@ export const Reconnect = ({
   platform,
   connectSuccessUrl,
   connectFailureUrl,
+  inboxType = "personal",
   onError,
   onSuccess,
 }: AccounButtonProps) => {
   const { apiClient } = useSimpuProvider();
-  const { getOauth2IntegrationUrl } = useAccountConnectOptions();
+  const { getOauth2IntegrationUrl } = useAccountConnectOptions({ inboxType });
 
   const [isQRCodeModalOpen, setIsQRCodeModalOpen] = useState(false);
   const [sessionId, setSessionCode] = useState<string | undefined>();

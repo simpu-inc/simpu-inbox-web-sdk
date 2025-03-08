@@ -23,11 +23,13 @@ import { QRCodeSVG } from "qrcode.react";
 import React, { useEffect, useState } from "react";
 import { useSimpuProvider } from "../provider";
 import { useAccountConnectOptions } from "./hook";
+import { InboxType } from "@/types";
 
 export interface QRCodeSetupDialogProps
   extends Omit<DialogRootProps, "children"> {
   channelId?: string;
   sessionId?: string;
+  inboxType?: InboxType;
   reAuthenticate?: boolean;
   onScanSuccess?: () => void;
   setCredentialId?: (credential_id: string) => void;
@@ -36,11 +38,17 @@ export interface QRCodeSetupDialogProps
 type ViewControl = "qr-code" | "warning";
 
 export const QRCodeSetupDialog = (props: QRCodeSetupDialogProps) => {
-  const { sessionId, onScanSuccess, setCredentialId, ...rest } = props;
+  const {
+    sessionId,
+    inboxType = "personal",
+    onScanSuccess,
+    setCredentialId,
+    ...rest
+  } = props;
 
   const queryClient = useQueryClient();
   const { apiClient } = useSimpuProvider();
-  const { inbox } = useAccountConnectOptions();
+  const { inbox } = useAccountConnectOptions({ inboxType });
 
   const [qrcode, setQrCode] = useState("");
   const [isScanned, setIsScanned] = useState(false);

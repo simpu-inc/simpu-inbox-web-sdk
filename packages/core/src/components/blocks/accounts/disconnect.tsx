@@ -20,6 +20,7 @@ import { AccounButtonProps } from "./types";
 
 export const Disconnect = ({
   account,
+  inboxType = "personal",
   onError,
   onSuccess,
   ...props
@@ -30,7 +31,9 @@ export const Disconnect = ({
 
   const queryClient = useQueryClient();
   const { apiClient } = useSimpuProvider();
-  const { inbox } = useAccountConnectOptions();
+  const { inbox } = useAccountConnectOptions({
+    inboxType,
+  });
 
   const handleDisconnectAccount = async () => {
     try {
