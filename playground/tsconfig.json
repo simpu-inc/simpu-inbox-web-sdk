@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/[thread_id]"
+    "src/app/app/[thread_id]"
   ],
   "exclude": ["node_modules"]
 }

@@ -20,7 +20,7 @@ export default function AccountsPage() {
     <>
       <ViewContent>
         <Stack gap={6}>
-          <ViewHeader href="/settings">Accounts</ViewHeader>
+          <ViewHeader href="/app/settings">Accounts</ViewHeader>
           <ConnectAccount />
           <Stack px={4}>
             <Text textStyle="sm" fontWeight="medium">

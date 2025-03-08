@@ -63,7 +63,7 @@ export const ThreadsView = () => {
         </Flex>
         <ChatsList
           params={{ q: chatQuery }}
-          onChatListItemClick={(c) => push(`${c.uuid}`)}
+          onChatListItemClick={(c) => push(`/app/${c.uuid}`)}
           isChatItemActive={(c: Thread) => c.uuid === thread_id}
         />
       </>

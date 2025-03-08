@@ -59,7 +59,7 @@ export const NewChatView = () => {
           { body, to: [selectedContact?.platform_nick ?? ""] }
         );
         setIsStartingChat(false);
-        push(`/${thread.uuid}`);
+        push(`/app/${thread.uuid}`);
       } catch (error) {
         setIsStartingChat(false);
         toaster.create({

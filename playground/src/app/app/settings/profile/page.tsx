@@ -11,7 +11,7 @@ export default async function ProfilePage() {
     <>
       <ViewContent>
         <Stack gap={6}>
-          <ViewHeader href="/settings">Profile</ViewHeader>
+          <ViewHeader href="/app/settings">Profile</ViewHeader>
           <ProfileImage />
           <ProfileForm />
         </Stack>

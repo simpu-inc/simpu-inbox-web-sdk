@@ -1,13 +1,12 @@
-import { MainContent, ViewContent } from "@/components/layout/content";
-import { ChatsView } from "@/components/views/chats";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <>
-      <ViewContent>
-        <ChatsView />
-      </ViewContent>
-      <MainContent />
-    </>
-  );
+export default async function Home() {
+  const session = await auth();
+
+  if (!session) {
+    redirect("/login");
+  } else {
+    redirect("/app");
+  }
 }

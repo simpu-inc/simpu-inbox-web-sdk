@@ -26,10 +26,10 @@ export const Nav = () => {
       justifyContent="space-between"
     >
       <VStack>
-        <Link href="/">
+        <Link href="/app">
           <NavButton
             tooltipContent="Chat"
-            variant={pathname === "/" ? "subtle" : "ghost"}
+            variant={pathname === "/app" ? "subtle" : "ghost"}
           >
             <IoChatbubble size={20} />
           </NavButton>
@@ -37,11 +37,13 @@ export const Nav = () => {
       </VStack>
       <VStack>
         <ColorModeButton rounded="full" size="md" />
-        <Link href="/settings">
+        <Link href="/app/settings">
           <NavButton
             tooltipContent="Settings"
             variant={
-              ["/settings", "/settings/notifications"].includes(pathname)
+              ["/app/settings", "/app/settings/notifications"].includes(
+                pathname
+              )
                 ? "subtle"
                 : "ghost"
             }
@@ -49,10 +51,10 @@ export const Nav = () => {
             <FaGear size={20} />
           </NavButton>
         </Link>
-        <Link href="/settings/profile">
+        <Link href="/app/settings/profile">
           <NavButton
             tooltipContent="Profile"
-            variant={pathname === "/settings/profile" ? "subtle" : "ghost"}
+            variant={pathname === "/app/settings/profile" ? "subtle" : "ghost"}
           >
             <FaUserCircle size={24} />
           </NavButton>
