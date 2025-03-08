@@ -95,7 +95,7 @@ export const ChatMessage = ({
   setMessageToReply?(message: Message): void;
 }) => {
   const { author, entity, by_account, created_datetime } = message;
-  const attachments = entity.attachments;
+  const attachments = entity?.attachments;
   const isUser = !!by_account;
   const hasAttachment = !!attachments && !!attachments.length;
 
@@ -120,8 +120,8 @@ export const ChatMessage = ({
       <HStack px={16} align="flex-start" maxWidth="70%">
         {!isUser && (
           <Avatar
-            src={author.image_url}
-            name={author.name ?? author.platform_nick}
+            src={author?.image_url}
+            name={author?.name ?? author?.platform_nick}
           />
         )}
         <Stack
@@ -171,7 +171,7 @@ export const ChatMessage = ({
                 <MenuItem cursor="pointer" value="reply">
                   Reply
                 </MenuItem>
-                {hasAttachment && attachments[0].type === "image" && (
+                {hasAttachment && attachments?.[0]?.type === "image" && (
                   <MenuItem cursor="pointer" value="download">
                     Download
                   </MenuItem>
@@ -182,7 +182,7 @@ export const ChatMessage = ({
               </MenuContent>
             </MenuRoot>
           </Box>
-          {entity.content?.body && (
+          {entity?.content?.body && (
             <TextWithLink
               textStyle="sm"
               wordBreak="break-word"
@@ -192,11 +192,11 @@ export const ChatMessage = ({
           {hasAttachment && (
             <Grid
               templateColumns={
-                attachments.length > 1 ? "repeat(2, 1fr)" : "1fr"
+                attachments?.length > 1 ? "repeat(2, 1fr)" : "1fr"
               }
               gap={2}
             >
-              {attachments.map((item, index) => (
+              {attachments?.map((item, index) => (
                 <MediaElement
                   key={index}
                   type={item.type}
