@@ -1,4 +1,4 @@
-import { ChannelIntegration } from "@/types";
+import { ChannelIntegration, InboxType } from "@/types";
 import {
   QueryKeys,
   useGetInbox,
@@ -8,13 +8,25 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import { useSimpuProvider } from "../provider";
 
-export const useAccountConnectOptions = () => {
+export const useAccountConnectOptions = (
+  {
+    inboxType = "personal",
+  }: {
+    inboxType?: InboxType;
+  } = { inboxType: "personal" }
+) => {
   const queryClient = useQueryClient();
   const { apiClient } = useSimpuProvider();
-  const { data: personalInboxes } = useGetInboxes("personal");
+  const { data: userInboxes } = useGetInboxes(inboxType);
 
-  const { data: inbox } = useGetInbox(personalInboxes?.inboxes[0]?.uuid ?? "", {
-    enabled: !!personalInboxes?.inboxes.length,
+  const inboxName = `Inbox SDK: ${inboxType} inbox`;
+
+  const sdkInbox = userInboxes?.inboxes.find(
+    (i) => i.name.toLowerCase() === inboxName.toLowerCase()
+  );
+
+  const { data: inbox } = useGetInbox(sdkInbox?.uuid ?? "", {
+    enabled: !!userInboxes?.inboxes.length,
   });
   const { data: { integrations: simpuSupportedChannels = [] } = {} } =
     useGetSupportedChannels({ page: 1, per_page: 25 });
@@ -27,11 +39,11 @@ export const useAccountConnectOptions = () => {
 
   const handleCreateInbox = async () => {
     try {
-      await apiClient.inbox.inboxes.createInbox("personal", {
+      await apiClient.inbox.inboxes.createInbox(inboxType, {
         color: "#ff0000",
         show_report: false,
-        name: "Personal Inbox",
-        description: "Personal Inbox",
+        name: `Inbox SDK: ${inboxType} inbox`,
+        description: `Inbox SDK: ${inboxType} inbox`,
       });
       await queryClient.invalidateQueries({ queryKey: [QueryKeys.getInboxes] });
     } catch (error) {
