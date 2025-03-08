@@ -319,6 +319,10 @@ export const ConversationFooter = ({
     setAttachmentIds(upload_ids);
   };
 
+  if (thread?.state === "resolved") {
+    return null;
+  }
+
   return (
     <Box w="full" bg="bg.muted" borderTopWidth={1}>
       <Box w="full" p={4}>

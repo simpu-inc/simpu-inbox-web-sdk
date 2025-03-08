@@ -489,3 +489,17 @@ export interface IconBaseProps extends React.SVGAttributes<SVGElement> {
   title?: string;
 }
 export type IconType = (props: IconBaseProps) => JSX.Element;
+
+export interface AssignLogEntity {
+  name: string;
+  uuid: string;
+  color?: string;
+  image_url?: string;
+  type: "user" | "team" | "profile";
+  owner: {
+    name: string;
+    uuid: string;
+    color?: string;
+    image_url?: string;
+  };
+}

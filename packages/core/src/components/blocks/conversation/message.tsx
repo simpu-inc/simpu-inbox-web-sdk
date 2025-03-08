@@ -20,6 +20,7 @@ import {
 import { LuChevronDown, LuDownload, LuFile } from "react-icons/lu";
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "@/components/ui";
 import dayjs from "dayjs";
+import { ConversationLogItem } from "./log-message";
 
 const FileElement = ({ src }: { src: string }) => {
   return (
@@ -94,7 +95,8 @@ export const ChatMessage = ({
   message: Message;
   setMessageToReply?(message: Message): void;
 }) => {
-  const { author, entity, by_account, created_datetime } = message;
+  const { type, author, entity, sub_type, by_account, created_datetime } =
+    message;
   const attachments = entity?.attachments;
   const isUser = !!by_account;
   const hasAttachment = !!attachments && !!attachments.length;
@@ -114,6 +116,47 @@ export const ChatMessage = ({
     if (value === "delete") {
     }
   };
+
+  let messageText = (
+    <TextWithLink
+      textStyle="sm"
+      wordBreak="break-word"
+      text={entity?.content?.body}
+    />
+  );
+
+  if (sub_type === "rating") {
+    messageText = (
+      <TextWithLink
+        wordBreak="break-word"
+        fontSize="0.875rem"
+        linkStyles="color: #3525e6"
+        text={`A rating request has been sent the customer`}
+      />
+    );
+  }
+
+  if (entity?.meta?.deleted) {
+    messageText = (
+      <TextWithLink
+        textStyle="xs"
+        color="fg.muted"
+        text="This message was deleted"
+      />
+    );
+  }
+
+  if (type === "log") {
+    return (
+      <ConversationLogItem
+        author={author}
+        entity={entity}
+        messageType={sub_type}
+        isLoggedInUser={isUser}
+        created_datetime={created_datetime}
+      />
+    );
+  }
 
   return (
     <Flex w="full" direction="column" alignItems={alignSelf}>
@@ -189,13 +232,7 @@ export const ChatMessage = ({
               text="This message was deleted"
             />
           )}
-          {entity?.content?.body && (
-            <TextWithLink
-              textStyle="sm"
-              wordBreak="break-word"
-              text={entity.content.body}
-            />
-          )}
+          {messageText}
           {hasAttachment && (
             <Grid
               templateColumns={
