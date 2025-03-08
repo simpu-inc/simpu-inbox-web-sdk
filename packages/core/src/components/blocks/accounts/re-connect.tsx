@@ -60,6 +60,7 @@ export const Reconnect = ({
       <Button loading={isGeneratingSessionId} onClick={handleReauthAccount} />
       {isQRCodeModalOpen && (
         <QRCodeSetupDialog
+          inboxType={inboxType}
           sessionId={sessionId}
           open={isQRCodeModalOpen}
           onScanSuccess={onSuccess}

@@ -5,6 +5,7 @@ import {
   Inbox,
   InboxMetaResponse,
   InboxType,
+  Organization,
   Sound,
   Thread,
   ThreadRequestParams,
@@ -125,20 +126,27 @@ export const useGetSupportedChannels = (
 };
 
 export const useGetThreads = (payload: {
-  filter: "all" | "favorited" | "snoozed";
+  filter: "all" | "favorited" | "snoozed" | "open" | "assigned" | "closed";
+  inbox_id?: string;
   params?: ThreadRequestParams;
 }) => {
-  const { filter, params } = payload;
+  const { filter, params, inbox_id } = payload;
   const { apiClient } = useSimpuProvider();
 
   const fetchThreads = async ({ pageParam = 1, queryKey }: any) => {
     const [_, filter] = queryKey;
 
-    return apiClient.inbox.threads.getPersonalThreads(filter, {
-      ...params,
-      page: pageParam ?? 1,
-      per_page: params?.per_page ?? 25,
-    });
+    return !!inbox_id
+      ? apiClient.inbox.threads.getInboxThreads(inbox_id, filter, {
+          ...params,
+          page: pageParam ?? 1,
+          per_page: params?.per_page ?? 25,
+        })
+      : apiClient.inbox.threads.getPersonalThreads(filter, {
+          ...params,
+          page: pageParam ?? 1,
+          per_page: params?.per_page ?? 25,
+        });
   };
 
   return useInfiniteQuery({

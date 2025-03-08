@@ -75,6 +75,7 @@ export const Connect = ({
       />
       {isQRCodeModalOpen && (
         <QRCodeSetupDialog
+          inboxType={inboxType}
           sessionId={sessionId}
           open={isQRCodeModalOpen}
           onScanSuccess={onSuccess}

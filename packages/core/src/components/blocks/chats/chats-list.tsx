@@ -1,6 +1,6 @@
 "use client";
 
-import { Thread, ThreadRequestParams } from "@/types";
+import { InboxType, Thread, ThreadRequestParams } from "@/types";
 import { useDebounce } from "@/utils/hooks";
 import { useGetThreads } from "@/utils/queries";
 import { BoxProps, Flex, Heading, Spinner, Text } from "@chakra-ui/react";
@@ -9,13 +9,17 @@ import { InfiniteScroll } from "../infinite-scroll";
 import { ChatsListItem } from "./chats-list-item";
 
 export interface ChatsListProps extends BoxProps {
+  inbox_id?: string;
   params?: ThreadRequestParams;
+  filter?: "all" | "favorited" | "snoozed" | "open" | "assigned" | "closed";
   isChatItemActive?(chat: Thread): boolean;
   onChatListItemClick(chatItem: Thread): void;
 }
 
 export const ChatsList = ({
   params,
+  inbox_id,
+  filter = "all",
   isChatItemActive,
   onChatListItemClick,
   ...props
@@ -23,7 +27,8 @@ export const ChatsList = ({
   const debouncedSearchQuery = useDebounce(params?.q ?? "", 1500);
 
   const { data, fetchNextPage, hasNextPage } = useGetThreads({
-    filter: "all",
+    filter,
+    inbox_id,
     params: {
       ...params,
       q: debouncedSearchQuery || undefined,
