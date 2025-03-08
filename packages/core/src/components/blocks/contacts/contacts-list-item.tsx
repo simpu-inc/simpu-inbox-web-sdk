@@ -22,7 +22,7 @@ export const ContactListItem = ({
       onClick={() => onSelectContact?.(contact)}
     >
       <ListItem.Left>
-        <Avatar size="xl" name={contact.name} src={contact.image_url ?? ""} />
+        <Avatar size="xl" name={contact.name} src={contact?.image_url ?? ""} />
       </ListItem.Left>
       <ListItem.Right align="flex-start">
         <Stack gap={0} align="flex-start">

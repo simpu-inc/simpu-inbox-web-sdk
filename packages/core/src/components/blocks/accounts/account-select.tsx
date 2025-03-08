@@ -59,7 +59,7 @@ export const AccountSelect = ({
         name: a.name ?? "",
         channel_id: a.channel_id,
         platform: a.channel_name,
-        avatar: a.user.image_url ?? "",
+        avatar: a.user?.image_url ?? "",
       })) ?? [],
     itemToString: (item) => item.name,
     itemToValue: (item) => JSON.stringify(item),

@@ -263,6 +263,7 @@ export interface Message {
     pid?: string;
     meta?: {
       type: string;
+      deleted?: boolean;
     };
     status: string;
     quoted_id: string;

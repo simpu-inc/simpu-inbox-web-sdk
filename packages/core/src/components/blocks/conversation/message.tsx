@@ -120,7 +120,7 @@ export const ChatMessage = ({
       <HStack px={16} align="flex-start" maxWidth="70%">
         {!isUser && (
           <Avatar
-            src={author?.image_url}
+            src={author?.image_url ?? undefined}
             name={author?.name ?? author?.platform_nick}
           />
         )}
@@ -182,6 +182,13 @@ export const ChatMessage = ({
               </MenuContent>
             </MenuRoot>
           </Box>
+          {entity?.meta?.deleted && (
+            <TextWithLink
+              textStyle="xs"
+              color="fg.muted"
+              text="This message was deleted"
+            />
+          )}
           {entity?.content?.body && (
             <TextWithLink
               textStyle="sm"
