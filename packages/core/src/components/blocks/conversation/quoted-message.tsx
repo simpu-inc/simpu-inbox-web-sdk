@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Message } from "@/types";
+import { Message } from "simpu-api-sdk";
 import {
   Box,
   IconButton,

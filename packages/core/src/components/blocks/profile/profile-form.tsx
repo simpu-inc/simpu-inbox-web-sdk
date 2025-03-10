@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { UserProfile } from "@/types";
+import { UserProfile } from "simpu-api-sdk";
 import { QueryKeys, useGetProfile } from "@/utils/queries";
 import { Box, HStack, Input, Stack, Text } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";

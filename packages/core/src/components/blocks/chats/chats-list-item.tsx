@@ -2,7 +2,7 @@
 
 import { AccountPlatformIcon } from "@/components/blocks/accounts";
 import { Avatar } from "@/components/ui/avatar";
-import { Thread } from "@/types";
+import { Thread } from "simpu-api-sdk";
 import { formatMessageDateTime } from "@/utils/functions";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";

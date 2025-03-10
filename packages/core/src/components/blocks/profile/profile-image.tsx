@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { FileUploadRoot, FileUploadTrigger } from "@/components/ui/file-button";
-import { UserProfile } from "@/types";
+import { UserProfile } from "simpu-api-sdk";
 import { QueryKeys, useGetProfile } from "@/utils/queries";
 import { FileUploadFileRejectDetails, Stack } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";

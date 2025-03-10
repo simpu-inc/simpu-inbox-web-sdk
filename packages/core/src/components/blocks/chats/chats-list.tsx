@@ -1,6 +1,6 @@
 "use client";
 
-import { InboxType, Thread, ThreadRequestParams } from "@/types";
+import { Thread, ThreadRequestParams } from "simpu-api-sdk";
 import { useDebounce } from "@/utils/hooks";
 import { useGetThreads } from "@/utils/queries";
 import { BoxProps, Flex, Heading, Spinner, Text } from "@chakra-ui/react";

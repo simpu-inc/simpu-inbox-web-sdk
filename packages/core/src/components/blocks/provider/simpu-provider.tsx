@@ -2,7 +2,6 @@
 
 import { Provider } from "@/components/ui/provider";
 import { UserTying } from "@/types";
-import { APIClient } from "@/utils/api-client";
 import { constants } from "@/utils/constants";
 import { initializePusher } from "@/utils/pusher";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -15,6 +14,7 @@ import React, {
 } from "react";
 import { SocketProvider } from "./socket-provider";
 import { Box, BoxProps } from "@chakra-ui/react";
+import { APIClient } from "simpu-api-sdk";
 
 const SimpuContext = createContext<SimpuContextType | null>(null);
 
@@ -61,6 +61,15 @@ export const SimpuProvider: React.FC<SimpuProviderProps> = (props) => {
 
   const apiClient = new APIClient(
     {
+      ai: "",
+      apps: "",
+      graph: "",
+      events: "",
+      report: "",
+      payment: "",
+      notification: "",
+      "apps-action": "",
+      "knowledge-base": "",
       core: constants.CORE_API_URL,
       inbox: apiUrl ?? constants.CONVERSATION_API_URL,
     },

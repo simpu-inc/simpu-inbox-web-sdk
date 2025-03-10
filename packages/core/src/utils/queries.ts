@@ -5,13 +5,12 @@ import {
   Inbox,
   InboxMetaResponse,
   InboxType,
-  Organization,
   Sound,
   Thread,
   ThreadRequestParams,
   User,
   UserProfile,
-} from "@/types";
+} from "simpu-api-sdk";
 import {
   useInfiniteQuery,
   useQuery,

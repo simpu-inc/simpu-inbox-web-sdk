@@ -14,7 +14,7 @@ import {
   FileUploadRootProps,
   FileUploadTrigger,
 } from "@/components/ui/file-button";
-import { InboxMetaResponse, Message, Thread } from "@/types";
+import { InboxMetaResponse, Message, Thread } from "simpu-api-sdk";
 import { QueryKeys, useGetProfile, useGetThread } from "@/utils/queries";
 import {
   Box,
@@ -177,7 +177,7 @@ export const ConversationFooter = ({
       return apiClient.inbox.contents.reply(
         messageToReply?.uuid || thread?.draft?.message_id || "",
         {
-          body: body,
+          body: body ?? "",
           type: "message",
           attachments: attachment_ids,
         }
@@ -233,7 +233,7 @@ export const ConversationFooter = ({
   const { mutateAsync: mutateSendMessage } = useMutation({
     mutationFn: ({ data }: { data: SendMessagePayload }) => {
       return apiClient.inbox.contents.sendMessage(thread_id ?? "", {
-        body: data.body,
+        body: data.body ?? "",
         attachments: data?.attachment_ids,
       });
     },

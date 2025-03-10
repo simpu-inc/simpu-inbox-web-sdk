@@ -1,4 +1,4 @@
-import { ChannelIntegration, InboxType } from "@/types";
+import { ChannelIntegration, InboxType } from "simpu-api-sdk";
 import {
   QueryKeys,
   useGetInbox,

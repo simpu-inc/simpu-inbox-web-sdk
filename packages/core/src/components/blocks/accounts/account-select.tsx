@@ -9,9 +9,9 @@ import {
   SelectTrigger,
   SelectValueText,
 } from "@/components/ui/select";
-import { Account } from "@/types";
 import { Box, createListCollection, HStack } from "@chakra-ui/react";
 import React from "react";
+import { Account } from "simpu-api-sdk";
 
 export const SelectValueItem = () => (
   <SelectValueText placeholder="Select account">

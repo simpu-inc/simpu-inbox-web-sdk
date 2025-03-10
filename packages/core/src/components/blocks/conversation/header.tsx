@@ -2,7 +2,7 @@
 
 import React, { ReactNode } from "react";
 import { Avatar } from "@/components/ui/avatar";
-import { Thread } from "@/types";
+import { Thread } from "simpu-api-sdk";
 import { useGetThread } from "@/utils/queries";
 import { Flex, FlexProps, HStack, Text } from "@chakra-ui/react";
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { AssignLogEntity, Message } from "@/types";
+import { Message } from "simpu-api-sdk";
+import { AssignLogEntity } from "@/types";
 import { Stack, StackProps, Text } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import React from "react";

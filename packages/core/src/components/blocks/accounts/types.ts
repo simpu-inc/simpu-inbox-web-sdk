@@ -1,5 +1,5 @@
 import { ButtonProps } from "@/components/ui/button";
-import { Account, InboxType } from "@/types";
+import { Account, InboxType } from "simpu-api-sdk";
 
 export interface AccounButtonProps extends ButtonProps {
   account?: Account;

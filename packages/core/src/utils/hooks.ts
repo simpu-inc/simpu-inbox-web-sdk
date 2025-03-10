@@ -1,4 +1,5 @@
-import { Thread, UserProfile, UserTying } from "@/types";
+import { Thread, UserProfile } from "simpu-api-sdk";
+import { UserTying } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
 import PrivateChannel from "pusher-js/types/src/core/channels/private_channel";
 import { useEffect, useRef, useState } from "react";

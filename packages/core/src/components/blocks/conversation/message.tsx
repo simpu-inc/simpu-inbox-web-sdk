@@ -3,7 +3,7 @@
 import React from "react";
 import { Avatar } from "@/components/ui/avatar";
 import { useColorModeValue } from "@/components/ui/color-mode";
-import { Message } from "@/types";
+import { Message } from "simpu-api-sdk";
 import {
   AspectRatio,
   Box,
@@ -225,13 +225,6 @@ export const ChatMessage = ({
               </MenuContent>
             </MenuRoot>
           </Box>
-          {entity?.meta?.deleted && (
-            <TextWithLink
-              textStyle="xs"
-              color="fg.muted"
-              text="This message was deleted"
-            />
-          )}
           {messageText}
           {hasAttachment && (
             <Grid

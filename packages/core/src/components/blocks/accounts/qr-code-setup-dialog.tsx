@@ -23,7 +23,7 @@ import { QRCodeSVG } from "qrcode.react";
 import React, { useEffect, useState } from "react";
 import { useSimpuProvider } from "../provider";
 import { useAccountConnectOptions } from "./hook";
-import { InboxType } from "@/types";
+import { InboxType } from "simpu-api-sdk";
 
 export interface QRCodeSetupDialogProps
   extends Omit<DialogRootProps, "children"> {
