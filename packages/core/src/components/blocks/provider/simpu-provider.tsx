@@ -61,16 +61,16 @@ export const SimpuProvider: React.FC<SimpuProviderProps> = (props) => {
 
   const apiClient = new APIClient(
     {
-      ai: "",
-      apps: "",
-      graph: "",
-      events: "",
-      report: "",
-      payment: "",
-      notification: "",
-      "apps-action": "",
-      "knowledge-base": "",
+      ai: constants.CORE_API_URL,
+      apps: constants.CORE_API_URL,
       core: constants.CORE_API_URL,
+      graph: constants.CORE_API_URL,
+      events: constants.CORE_API_URL,
+      report: constants.CORE_API_URL,
+      payment: constants.CORE_API_URL,
+      notification: constants.CORE_API_URL,
+      "apps-action": constants.CORE_API_URL,
+      "knowledge-base": constants.CORE_API_URL,
       inbox: apiUrl ?? constants.CONVERSATION_API_URL,
     },
     {
