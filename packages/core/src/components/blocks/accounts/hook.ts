@@ -41,7 +41,7 @@ export const useAccountConnectOptions = (
     try {
       await apiClient.inbox.inboxes.createInbox(inboxType, {
         color: "#ff0000",
-        show_report: false,
+        show_report: true,
         name: `Inbox SDK: ${inboxType} inbox`,
         description: `Inbox SDK: ${inboxType} inbox`,
       });
