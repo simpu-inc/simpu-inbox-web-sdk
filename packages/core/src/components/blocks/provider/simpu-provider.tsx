@@ -61,6 +61,8 @@ export const SimpuProvider: React.FC<SimpuProviderProps> = (props) => {
     } = {},
   } = props;
 
+  console.log({ env, coreApiUrl, conversationApiUrl });
+
   const [queryClient] = useState(() => new QueryClient());
   const [shouldPopSound, setShouldPopSound] = useState(false);
   const [userTypingData, setUserTypingData] = useState<UserTying | undefined>();
@@ -95,10 +97,10 @@ export const SimpuProvider: React.FC<SimpuProviderProps> = (props) => {
 
   useEffect(() => {
     if (accessToken && organisationID) {
-      initializePusher(accessToken, organisationID, env);
+      initializePusher(accessToken, organisationID, conversationApiUrl, env);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessToken, organisationID]);
+  }, [accessToken, organisationID, conversationApiUrl, env]);
 
   return (
     <QueryClientProvider client={queryClient}>

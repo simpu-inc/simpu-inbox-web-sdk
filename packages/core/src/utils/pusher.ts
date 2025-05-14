@@ -6,6 +6,7 @@ let pusher: Pusher;
 const initializePusher = (
   token?: string,
   organisation_id?: string,
+  conversationApiUrl: string = constants.CONVERSATION_API_URL,
   env: "development" | "production" = "development"
 ) => {
   if (!pusher) {
@@ -22,12 +23,12 @@ const initializePusher = (
       userAuthentication: {
         headers,
         transport: "ajax",
-        endpoint: `${constants.CONVERSATION_API_URL}/auth/websocket`,
+        endpoint: `${conversationApiUrl}/auth/websocket`,
       },
       channelAuthorization: {
         headers,
         transport: "ajax",
-        endpoint: `${constants.CONVERSATION_API_URL}/auth/websocket/channel`,
+        endpoint: `${conversationApiUrl}/auth/websocket/channel`,
       },
       forceTLS: true,
       cluster: "eu",
