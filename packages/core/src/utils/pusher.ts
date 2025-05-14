@@ -3,13 +3,22 @@ import { constants } from "./constants";
 
 let pusher: Pusher;
 
-const initializePusher = (token?: string, organisation_id?: string) => {
+const initializePusher = (
+  token?: string,
+  organisation_id?: string,
+  env: "development" | "production" = "development"
+) => {
   if (!pusher) {
     const headers = {
       authorization: token,
       organisationID: organisation_id,
     };
-    pusher = new Pusher(constants.PUSHER_APP_KEY || "", {
+    const appKey =
+      env === "development"
+        ? constants.PUSHER_APP_KEY_DEV
+        : constants.PUSHER_APP_KEY_PROD;
+
+    pusher = new Pusher(appKey, {
       userAuthentication: {
         headers,
         transport: "ajax",

@@ -31,7 +31,9 @@ export interface SimpuProviderProps extends PropsWithChildren {
   accessToken: string;
   organisationID: string;
   options?: {
-    apiUrl?: string;
+    coreApiUrl?: string;
+    conversationApiUrl?: string;
+    env?: "development" | "production";
   };
   colorPalette?: BoxProps["colorPalette"];
 }
@@ -52,7 +54,11 @@ export const SimpuProvider: React.FC<SimpuProviderProps> = (props) => {
     accessToken,
     organisationID,
     colorPalette = "gray",
-    options: { apiUrl } = {},
+    options: {
+      env = "development",
+      coreApiUrl = constants.CORE_API_URL,
+      conversationApiUrl = constants.CONVERSATION_API_URL,
+    } = {},
   } = props;
 
   const [queryClient] = useState(() => new QueryClient());
@@ -61,17 +67,17 @@ export const SimpuProvider: React.FC<SimpuProviderProps> = (props) => {
 
   const apiClient = new APIClient(
     {
-      ai: constants.CORE_API_URL,
-      apps: constants.CORE_API_URL,
-      core: constants.CORE_API_URL,
-      graph: constants.CORE_API_URL,
-      events: constants.CORE_API_URL,
-      report: constants.CORE_API_URL,
-      payment: constants.CORE_API_URL,
-      notification: constants.CORE_API_URL,
-      "apps-action": constants.CORE_API_URL,
-      "knowledge-base": constants.CORE_API_URL,
-      inbox: apiUrl ?? constants.CONVERSATION_API_URL,
+      ai: coreApiUrl,
+      apps: coreApiUrl,
+      core: coreApiUrl,
+      graph: coreApiUrl,
+      events: coreApiUrl,
+      report: coreApiUrl,
+      payment: coreApiUrl,
+      notification: coreApiUrl,
+      "apps-action": coreApiUrl,
+      "knowledge-base": coreApiUrl,
+      inbox: conversationApiUrl,
     },
     {
       organisationID,
@@ -89,7 +95,7 @@ export const SimpuProvider: React.FC<SimpuProviderProps> = (props) => {
 
   useEffect(() => {
     if (accessToken && organisationID) {
-      initializePusher(accessToken, organisationID);
+      initializePusher(accessToken, organisationID, env);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken, organisationID]);
