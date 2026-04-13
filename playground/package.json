@@ -13,7 +13,7 @@
     "@emotion/react": "^11.13.3",
     "@simpu/inbox-sdk": "workspace:*",
     "@tanstack/react-query": "^5.56.2",
-    "axios": "^1.7.7",
+    "axios": "^1.15.0",
     "dayjs": "^1.11.13",
     "formik": "^2.4.6",
     "motion": "^12.4.10",
